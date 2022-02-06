@@ -1,5 +1,5 @@
 import {
-  GET_ALL_APPLICATIONS,
+  GET_ALL_JOB_LIST,
   GET_ALL_STUDENTS,
   GET_STUDENT_PROFILE_BASE_URL,
   POST_NEW_FACULTY,
@@ -31,11 +31,16 @@ const API = {
   //   const endpoint = `${GET_STUDENT_PROFILE_BASE_URL}${id}`;
   //   return endpoint;
   // },
-  fetchApplication: (postId) => {
+  fetchJobList: (pageSize, pageNo) => {
     let endpoint;
-    if (postId === undefined) endpoint = `${GET_ALL_APPLICATIONS}`;
-    else
-      endpoint = `${GET_ALL_APPLICATION_FOR_JOB_BASE_URL}${postId}/applications`;
+    if (pageSize === undefined && pageNo === undefined)
+      endpoint = `${GET_ALL_JOB_LIST}`;
+    else endpoint = `${GET_ALL_JOB_LIST}?pageSize=${pageSize}&pageNo=${pageNo}`;
+    return endpoint;
+  },
+  fetchJobApplicants: (postId) => {
+    let endpoint;
+    endpoint = `${GET_ALL_APPLICATION_FOR_JOB_BASE_URL}${postId}/applications`;
     return endpoint;
   },
 };

@@ -19,18 +19,36 @@ const Buttonss = (props) => {
     setopenStudentList,
     openAddCompany,
     setOpenAddCompany,
+    openRegisterTPO,
+    setOpenRegisterTPO,
+    openRegisterFaculty,
+    setOpenRegisterFaculty,
+    setopenJobList,
+    openJobList,
   } = props;
   // const { openStudentList } = props.openStudentList;
 
   const handleClick = (i) => {
     setopenStudentList(false);
     setOpenAddCompany(false);
-
+    setOpenRegisterTPO(false);
+    setOpenRegisterFaculty(false);
+    setopenJobList(false);
     if (i === 1) {
       setopenStudentList(true);
+      console.log("Setting  openStudentList", openStudentList);
     } else if (i === 2) {
       setOpenAddCompany(true);
       console.log("Setting  openAddCompany", openAddCompany);
+    } else if (i === 3) {
+      setOpenRegisterTPO(true);
+      console.log("Setting  openRegisterTPO", openRegisterTPO);
+    } else if (i === 4) {
+      setOpenRegisterFaculty(true);
+      console.log("Setting  openRegisterTPO", openRegisterFaculty);
+    } else if (i == 5) {
+      setopenJobList(true);
+      console.log("Setting  openJobList", openJobList);
     }
   };
   return (
@@ -42,7 +60,7 @@ const Buttonss = (props) => {
           alignItems="center"
         >
           <Stack direction="column" justify-justifyContent="space-evenly">
-            <ProfileButton variant="contained">VIEW DRIVES</ProfileButton>
+            {/* <ProfileButton variant="contained">VIEW DRIVES</ProfileButton> */}
             <ProfileButton
               variant="contained"
               onClick={() => {
@@ -60,20 +78,32 @@ const Buttonss = (props) => {
             >
               NEW DRIVE
             </ProfileButton>
+
             <ProfileButton
               variant="contained"
               onClick={() => {
-                // setopenStudentList(!openStudentList);
+                handleClick(3);
               }}
             >
-              SAMPLE BUTTON
+              REGISTER A TPO
             </ProfileButton>
-            {/* <Button
-            onClick={() => setopenStudentList(!openStudentList)}
-            title="VIEW STUDENT LIST"
-            />
-            <Button title="ADD COURSES" />
-          <Button title="ADD COMPANY" /> */}
+
+            <ProfileButton
+              variant="contained"
+              onClick={() => {
+                handleClick(4);
+              }}
+            >
+              REGISTER A Faculty
+            </ProfileButton>
+            <ProfileButton
+              variant="contained"
+              onClick={() => {
+                handleClick(5);
+              }}
+            >
+              VIEW DRIVES
+            </ProfileButton>
           </Stack>
         </Stack>
       </Link>

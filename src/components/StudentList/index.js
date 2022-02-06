@@ -10,7 +10,7 @@ import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import { useFetch } from "../../hooks/useFetch";
 import API from "../../API";
 
-export default function StudentList() {
+export default function StudentList({ setStudentUID, setopenStudentProfile }) {
   const { content, loading } = useFetch(API.fetchStudents(), "studentsDetails");
   const [search, setSearch] = useState("");
   if (loading) {
@@ -20,8 +20,8 @@ export default function StudentList() {
   let students = [];
   if (!loading) {
     students = content.students;
-    students = { ...students, ...content.students };
   }
+  // console.log("HEsd", students);
   return (
     <>
       <Typography align="center" variant="h5" gutterBottom component="div">
@@ -58,7 +58,15 @@ export default function StudentList() {
               <ListItem
                 key={index}
                 secondaryAction={
-                  <IconButton edge="end" aria-label="comments">
+                  <IconButton
+                    edge="end"
+                    aria-label="comments"
+                    onClick={() => {
+                      setStudentUID(student.uid);
+                      setopenStudentProfile(true);
+                      // console.log("student", student.uid);
+                    }}
+                  >
                     <CommentIcon />
                   </IconButton>
                 }
@@ -66,33 +74,7 @@ export default function StudentList() {
               >
                 <ListItemButton role={undefined} dense>
                   <ListItemText primary={student.displayName} />
-                  <ListItemText primary={student.uid} />
-                </ListItemButton>
-              </ListItem>
-              <ListItem
-                key={index * 2}
-                secondaryAction={
-                  <IconButton edge="end" aria-label="comments">
-                    <CommentIcon />
-                  </IconButton>
-                }
-                disablePadding
-              >
-                <ListItemButton role={undefined} dense>
-                  <ListItemText primary={student.displayName} />
-                </ListItemButton>
-              </ListItem>
-              <ListItem
-                key={index * 3}
-                secondaryAction={
-                  <IconButton edge="end" aria-label="comments">
-                    <CommentIcon />
-                  </IconButton>
-                }
-                disablePadding
-              >
-                <ListItemButton role={undefined} dense>
-                  <ListItemText primary={student.displayName} />
+                  {/* <ListItemText primary={student.uid} /> */}
                 </ListItemButton>
               </ListItem>
             </>

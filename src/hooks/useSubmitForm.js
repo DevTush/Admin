@@ -11,8 +11,8 @@ export const useSubmitForm = (submitTo, payload) => {
     try {
       setError(false);
       setLoading(true);
-      const response = await axios.get(submitTo, payload);
-      setContent(response.data);
+      const response = await axios.post(submitTo, payload);
+      // setContent(response.data);
       setLoading(false);
     } catch (error) {
       setError(true);
