@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Form, useForm } from "./../Forms/";
-// import { FormControls } from "./../FormControls/";
+import { submitForm } from "../../utils";
+import API from "../../API";
 import {
   Button,
   Card,
@@ -72,8 +73,37 @@ const CompanyForm = () => {
     useForm(initialValues, true, validate);
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Job Posted");
-    console.log(JSON.parse(values));
+    let payload = {
+      companyName: values.companyName,
+      designation: values.Designation,
+      jobDesc: values.jobDesc,
+      contactNo: values.contact,
+      email: values.email,
+      venue: values.venue,
+      noOfRounds: values.rounds,
+
+      eligibility: {
+        marks: {
+          X: {
+            required: values.isXMarks,
+            minMarks: values.XMarks,
+          },
+          XII: {
+            required: values.isXIIMarks,
+            minMarks: values.XIIMarks,
+          },
+          university: {
+            required: values.isUniversityMarks,
+            minMarks: values.UniversityMarks,
+          },
+        },
+        backHistory: values.isBacklogs,
+        noOfBacks: { required: values.isBacklogs, maxBacks: values.Backlogs },
+      },
+    };
+    // console.log("Payload:   ", payload);
+    submitForm(API.postNewJob(), payload);
+    // console.log(JSON.parse(values));
     // if (validate()) {
     // } else alert("invalid");
   };
@@ -298,6 +328,8 @@ const CompanyForm = () => {
             <Checkbox
               // color="success"
               onChange={handleInputChange}
+              value={values.isBacklogs}
+              name="isBacklogs"
               style={{ position: "absolute", top: "610px" }}
             ></Checkbox>
             {values.isBacklogs ? (
@@ -309,7 +341,7 @@ const CompanyForm = () => {
                 label="Backlogs"
                 style={{
                   position: "absolute",
-                  top: "560px",
+                  top: "610px",
                   left: "502px",
                   width: 226,
                 }}

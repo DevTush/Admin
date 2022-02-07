@@ -12,7 +12,10 @@ export const useSubmitForm = (submitTo, payload) => {
       setError(false);
       setLoading(true);
       const response = await axios.post(submitTo, payload);
-      // setContent(response.data);
+      if (response.data.success) {
+        console.log("Form submitted successfully");
+      }
+
       setLoading(false);
     } catch (error) {
       setError(true);

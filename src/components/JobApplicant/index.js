@@ -3,18 +3,20 @@ import { useFetch } from "../../hooks/useFetch";
 import API from "../../API";
 
 const JobApplicant = ({ JobPostID, setopenJobApplicants, setJobPostID }) => {
-  const { content, loading, error } = useFetch();
-  // const { content, loading } = useFetch(
-  //   API.fetchJobApplicants(),
-  //   "applications"
-  // );
+  // const { content, loading, error } = useFetch();
+  const { content, loading } = useFetch(
+    API.fetchJobApplicants(JobPostID),
+    "jobApplicants"
+  );
 
-  API.fetchStudents(studentUID), `${studentUID}Details`;
-  let student = [];
+  // )
+
+  // API.fetchStudents(studentUID), `${studentUID}Details`;
+  let applications = [];
   if (!loading) {
-    student = content.data;
+    applications = content.applications;
   }
-  console.log(student);
+  console.log(applications);
   return (
     <>
       <button
@@ -27,13 +29,18 @@ const JobApplicant = ({ JobPostID, setopenJobApplicants, setJobPostID }) => {
       </button>
 
       <h3>Job Applicants</h3>
-      {Array.isArray(student?.skills) && (
+      {Array.isArray(applications) && (
         <>
-          <ul>
-            {student?.skills.map((skill, index) => (
-              <li key={index}>{skill}</li>
-            ))}
-          </ul>
+          {applications.map((application, index) => (
+            <ul key={index}>
+              <li>Name: {application.name}</li>
+              <li>USN: {application.usn}</li>
+              <li>Personal Mail: {application.personalMail}</li>
+              <li>Gender: {application.gender}</li>
+              <li>Github: {application.github}</li>
+              <li>Placement Status: {application.placement_status}</li>
+            </ul>
+          ))}
         </>
       )}
     </>

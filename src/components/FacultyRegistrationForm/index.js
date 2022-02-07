@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Form, useForm } from "./../Forms/";
 // import { FormControls } from "./../FormControls/";
-import { useSubmitForm } from "../../hooks/useSubmitForm";
+import { submitForm } from "../../utils";
 import {
   Button,
   Card,
@@ -20,15 +20,18 @@ const initialValues = {
   password: "",
 };
 
-const submitForm = async (submitTo, payload) => {
-  try {
-    const response = await axios.post(submitTo, payload);
-    console.log(response);
-  } catch (err) {
-    // console.log(err);
-    // alert("Something went wrong");
-  }
-};
+// const submitForm = async (submitTo, payload) => {
+//   try {
+//     const response = await axios.post(submitTo, payload);
+
+//     if (response.data.success) {
+//       alert("FACULTY REGISTERED");
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     alert("Something went wrong");
+//   }
+// };
 
 const FacultyRegistrationForm = () => {
   const validate = (fieldValues = values) => {
@@ -55,8 +58,7 @@ const FacultyRegistrationForm = () => {
     e.preventDefault();
     if (validate()) {
       // console.log(values);
-      submitForm(API.postNewFaculty, values);
-      alert("Faculty Registered Successfully");
+      submitForm(API.postNewFaculty(), values);
     } else alert("invalid");
   };
 

@@ -31,7 +31,7 @@ const ViewPage = () => {
     <>
       {/* <Navbar /> */}
 
-      <Grid container spacing={3}>
+      <Grid container>
         <Grid item sm={4}>
           <div className="b">
             <Buttons
