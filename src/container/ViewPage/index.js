@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Buttons from "../../components/Buttons";
-import StudentList from "../../components/StudentList";
+import List from "../../components/List";
 import CompanyForm from "../../components/CompanyForm";
 import Grid from "@mui/material/Grid";
 import { Stack } from "@mui/material";
@@ -13,6 +13,7 @@ import FacultyRegistrationForm from "../../components/FacultyRegistrationForm";
 import StudentProfile from "../../components/StudentProfile";
 import JobList from "../../components/JobList";
 import JobApplicant from "../../components/JobApplicant";
+import API from "../../API";
 const ViewPage = () => {
   const [openStudentList, setopenStudentList] = useState(false);
   const [openJobList, setopenJobList] = useState(false);
@@ -50,9 +51,12 @@ const ViewPage = () => {
         </Grid>
         <Grid item sm={4}>
           {openStudentList && (
-            <StudentList
+            <List
               setopenStudentProfile={setopenStudentProfile}
               setStudentUID={setStudentUID}
+              APIURI={API.fetchStudents()}
+              sessionName="studentsDetails"
+              title="STUDENT LIST"
             />
           )}
           {openJobList && (

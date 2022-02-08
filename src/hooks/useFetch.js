@@ -32,7 +32,7 @@ export const useFetch = (fetchURL, sessionName) => {
       fetch();
     }
   }, []);
-  //   Write to sessionStorage
+  // Write to sessionStorage
   // useEffect(() => {
   //   sessionStorage.setItem(sessionName, JSON.stringify(content));
   // });

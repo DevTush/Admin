@@ -53,7 +53,7 @@ const Buttonss = (props) => {
   };
   return (
     <>
-      <Link to="/View" style={{ textDecoration: "none" }}>
+      <Link to="/view" style={{ textDecoration: "none" }}>
         <Stack
           direction="row"
           justifyContent="space-between"

@@ -8,7 +8,7 @@ import React from "react";
 import HomePage from "./container/HomePage";
 import ViewPage from "./container/ViewPage";
 import NotFound from "./container/NotFoundPage";
-
+import ApplicantPage from "./container/ApplicantPage";
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,7 +25,12 @@ const App = () => {
       <Router>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/View" element={<ViewPage />} />
+          <Route exact path="/view" element={<ViewPage />} />
+          <Route
+            exact
+            path="/applicant/:jobPostID"
+            element={<ApplicantPage />}
+          />
           {/* <Route exact path="/RegisterNewTPO" element={<TPO />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
