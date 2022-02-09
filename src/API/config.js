@@ -8,3 +8,6 @@ export const GET_ALL_STUDENTS = "admin/students/all";
 export const GET_STUDENT_PROFILE_BASE_URL = "admin/student/profile/";
 export const GET_ALL_JOB_LIST = "admin/job/list";
 export const GET_ALL_APPLICATION_FOR_JOB_BASE_URL = "admin/job/";
+export const GET_ALL_LOGS = "admin/logs";
+
+//PUT request

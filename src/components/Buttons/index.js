@@ -13,21 +13,14 @@ const ProfileButton = styled(Button)(({ theme }) => ({
   color: "white",
 }));
 
-const Buttonss = (props) => {
-  const {
-    openStudentList,
-    setopenStudentList,
-    openAddCompany,
-    setOpenAddCompany,
-    openRegisterTPO,
-    setOpenRegisterTPO,
-    openRegisterFaculty,
-    setOpenRegisterFaculty,
-    setopenJobList,
-    openJobList,
-  } = props;
-  // const { openStudentList } = props.openStudentList;
-
+const Buttons = ({
+  setopenStudentList,
+  setOpenAddCompany,
+  setOpenRegisterTPO,
+  setOpenRegisterFaculty,
+  setopenJobList,
+  changePage = false,
+}) => {
   const handleClick = (i) => {
     setopenStudentList(false);
     setOpenAddCompany(false);
@@ -36,30 +29,81 @@ const Buttonss = (props) => {
     setopenJobList(false);
     if (i === 1) {
       setopenStudentList(true);
-      console.log("Setting  openStudentList", openStudentList);
     } else if (i === 2) {
       setOpenAddCompany(true);
-      console.log("Setting  openAddCompany", openAddCompany);
     } else if (i === 3) {
       setOpenRegisterTPO(true);
-      console.log("Setting  openRegisterTPO", openRegisterTPO);
     } else if (i === 4) {
       setOpenRegisterFaculty(true);
-      console.log("Setting  openRegisterTPO", openRegisterFaculty);
     } else if (i == 5) {
       setopenJobList(true);
-      console.log("Setting  openJobList", openJobList);
     }
   };
   return (
     <>
-      <Link to="/view" style={{ textDecoration: "none" }}>
+      {changePage ? (
+        <Link to="/view" style={{ textDecoration: "none" }}>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Stack direction="column">
+              {/* <ProfileButton variant="contained">VIEW DRIVES</ProfileButton> */}
+              <ProfileButton
+                variant="contained"
+                onClick={() => {
+                  handleClick(1);
+                }}
+              >
+                VIEW STUDENT LIST
+              </ProfileButton>
+
+              <ProfileButton
+                variant="contained"
+                onClick={() => {
+                  handleClick(2);
+                }}
+              >
+                NEW DRIVE
+              </ProfileButton>
+
+              <ProfileButton
+                variant="contained"
+                onClick={() => {
+                  handleClick(3);
+                }}
+              >
+                REGISTER A TPO
+              </ProfileButton>
+
+              <ProfileButton
+                variant="contained"
+                onClick={() => {
+                  handleClick(4);
+                }}
+              >
+                REGISTER A Faculty
+              </ProfileButton>
+              <ProfileButton
+                variant="contained"
+                onClick={() => {
+                  handleClick(5);
+                }}
+              >
+                VIEW DRIVES
+              </ProfileButton>
+            </Stack>
+          </Stack>
+          ;
+        </Link>
+      ) : (
         <Stack
           direction="row"
           justifyContent="space-between"
           alignItems="center"
         >
-          <Stack direction="column" justify-justifyContent="space-evenly">
+          <Stack direction="column">
             {/* <ProfileButton variant="contained">VIEW DRIVES</ProfileButton> */}
             <ProfileButton
               variant="contained"
@@ -106,9 +150,9 @@ const Buttonss = (props) => {
             </ProfileButton>
           </Stack>
         </Stack>
-      </Link>
+      )}
     </>
   );
 };
 
-export default Buttonss;
+export default Buttons;

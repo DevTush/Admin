@@ -3,7 +3,7 @@ import axios from "../API/axios";
 import API from "../API";
 import { checkExistingState } from "../utils";
 
-export const useFetch = (fetchURL, sessionName) => {
+export const useFetch = (fetchURL, storeState, sessionName) => {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -23,12 +23,16 @@ export const useFetch = (fetchURL, sessionName) => {
   }, [fetchURL]);
 
   useEffect(() => {
-    const sessionState = checkExistingState(sessionName);
-    if (sessionState) {
-      //   console.log("Not fetching...");
-      setContent(sessionState);
+    if (storeState) {
+      const sessionState = checkExistingState(sessionName);
+      if (sessionState) {
+        //   console.log("Not fetching...");
+        setContent(sessionState);
+      } else {
+        //   console.log("fetching...");
+        fetch();
+      }
     } else {
-      //   console.log("fetching...");
       fetch();
     }
   }, []);

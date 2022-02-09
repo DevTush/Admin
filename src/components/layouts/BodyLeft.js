@@ -11,7 +11,7 @@ import { styled } from "@mui/material/styles";
 import { orange } from "@mui/material/colors";
 import { blue } from "@mui/material/colors";
 
-import Buttonss from "../Buttons";
+import Buttons from "../Buttons";
 
 const ProfileButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(orange[500]),
@@ -55,7 +55,7 @@ const BodyLeft = () => {
             alignItems: "center",
           }}
         >
-          <Buttonss />
+          <Buttons changePage={true} />
         </Card>
         <Card
           sx={{

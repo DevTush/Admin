@@ -11,7 +11,11 @@ import { useFetch } from "../../hooks/useFetch";
 import API from "../../API";
 import { Link } from "react-router-dom";
 export default function JobList({ setJobPostID, setopenJobApplicants }) {
-  const { content, loading } = useFetch(API.fetchJobList(), "jobsDetails");
+  const { content, loading } = useFetch(
+    API.fetchJobList(),
+    true,
+    "jobsDetails"
+  );
 
   const [search, setSearch] = useState("");
 
@@ -52,37 +56,35 @@ export default function JobList({ setJobPostID, setopenJobApplicants }) {
       >
         {Array.isArray(jobs) &&
           jobs.map((job, index) => (
-            <>
-              <Link
-                to={`/applicant/${job?.postId}`}
-                style={{ textDecoration: "none" }}
+            <Link
+              to={`/applicant/${job?.postId}`}
+              style={{ textDecoration: "none" }}
+              key={index}
+            >
+              <ListItem
                 key={index}
+                secondaryAction={
+                  <IconButton
+                    edge="end"
+                    aria-label="comments"
+                    // onClick={() => {
+                    //   setJobPostID(job?.postId);
+                    //   setopenJobApplicants(true);
+                    //   console.log(job?.postId);
+                    //   // setJobPostID, setopenJobApplicants
+                    // }}
+                  >
+                    <CommentIcon />
+                  </IconButton>
+                }
+                disablePadding
               >
-                <ListItem
-                  key={index}
-                  secondaryAction={
-                    <IconButton
-                      edge="end"
-                      aria-label="comments"
-                      // onClick={() => {
-                      //   setJobPostID(job?.postId);
-                      //   setopenJobApplicants(true);
-                      //   console.log(job?.postId);
-                      //   // setJobPostID, setopenJobApplicants
-                      // }}
-                    >
-                      <CommentIcon />
-                    </IconButton>
-                  }
-                  disablePadding
-                >
-                  <ListItemButton role={undefined} dense>
-                    <ListItemText primary={job?.companyName} />
-                    {/* <ListItemText primary={student.uid} /> */}
-                  </ListItemButton>
-                </ListItem>
-              </Link>
-            </>
+                <ListItemButton role={undefined} dense>
+                  <ListItemText primary={job?.companyName} />
+                  {/* <ListItemText primary={student.uid} /> */}
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
       </List>
     </>

@@ -6,6 +6,7 @@ import {
   POST_NEW_JOB,
   POST_NEW_TPO,
   GET_ALL_APPLICATION_FOR_JOB_BASE_URL,
+  GET_ALL_LOGS,
 } from "./config";
 
 const API = {
@@ -41,6 +42,11 @@ const API = {
   fetchJobApplicants: (postId) => {
     let endpoint;
     endpoint = `${GET_ALL_APPLICATION_FOR_JOB_BASE_URL}${postId}/applications`;
+    return endpoint;
+  },
+  fetchLogs: () => {
+    let endpoint;
+    endpoint = `${GET_ALL_LOGS}`;
     return endpoint;
   },
 };

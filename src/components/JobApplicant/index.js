@@ -6,6 +6,7 @@ const JobApplicant = ({ JobPostID, setopenJobApplicants, setJobPostID }) => {
   // const { content, loading, error } = useFetch();
   const { content, loading } = useFetch(
     API.fetchJobApplicants(JobPostID),
+    true,
     "jobApplicants"
   );
 

@@ -31,7 +31,7 @@ const Body = () => {
         component="div"
         fontSize="0.8vw"
         fontWeight="550"
-        marginBottom="7px"
+        // marginBottom="7px"
       >
         Latest Posts
       </Typography>

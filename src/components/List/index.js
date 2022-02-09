@@ -6,10 +6,13 @@ import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import CommentIcon from "@mui/icons-material/Comment";
 import { InputBase, Paper, Typography } from "@mui/material";
-import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+// import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import { useFetch } from "../../hooks/useFetch";
-import API from "../../API";
+// import API from "../../API";
 import axios from "../../API/axios";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
 
 export default function StudentList({
   setStudentUID,
@@ -29,7 +32,7 @@ export default function StudentList({
   } else if (!loading && content?.applications) {
     contentData = content.applications;
   }
-  console.log("HEsd", content);
+  // console.log("HEsd", content);
   return (
     <>
       <Typography align="center" variant="h5" gutterBottom component="div">
@@ -62,23 +65,30 @@ export default function StudentList({
       >
         {Array.isArray(contentData) &&
           contentData.map((data, index) => (
-            <>
-              <ListItem
-                key={index}
-                secondaryAction={
-                  data?.displayName ? (
-                    <IconButton
-                      edge="end"
-                      aria-label="comments"
-                      onClick={() => {
-                        setStudentUID(data.uid);
-                        setopenStudentProfile(true);
-                        // console.log("student", student.uid);
-                      }}
-                    >
-                      <CommentIcon />
-                    </IconButton>
-                  ) : (
+            <ListItem
+              key={index}
+              secondaryAction={
+                data?.displayName ? (
+                  <IconButton
+                    edge="end"
+                    aria-label="comments"
+                    onClick={() => {
+                      setStudentUID(data.uid);
+                      setopenStudentProfile(true);
+                      // console.log("student", student.uid);
+                    }}
+                  >
+                    <CommentIcon />
+                  </IconButton>
+                ) : (
+                  <>
+                    {/* <FormGroup>
+                      <FormControlLabel
+                        control={<Switch />}
+                        label="Placement Status"
+                      />
+                    </FormGroup> */}
+
                     <IconButton
                       edge="end"
                       aria-label="comments"
@@ -104,16 +114,16 @@ export default function StudentList({
                     >
                       <CommentIcon />
                     </IconButton>
-                  )
-                }
-                disablePadding
-              >
-                <ListItemButton role={undefined} dense>
-                  <ListItemText primary={data?.displayName || data?.name} />
-                  {/* <ListItemText primary={student.uid} /> */}
-                </ListItemButton>
-              </ListItem>
-            </>
+                  </>
+                )
+              }
+              disablePadding
+            >
+              <ListItemButton role={undefined} dense>
+                <ListItemText primary={data?.displayName || data?.name} />
+                {/* <ListItemText primary={student.uid} /> */}
+              </ListItemButton>
+            </ListItem>
           ))}
       </List>
     </>

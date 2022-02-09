@@ -7,6 +7,7 @@ import React from "react";
 
 import HomePage from "./container/HomePage";
 import ViewPage from "./container/ViewPage";
+import LogPage from "./container/LogPage";
 import NotFound from "./container/NotFoundPage";
 import ApplicantPage from "./container/ApplicantPage";
 import {
@@ -26,6 +27,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/view" element={<ViewPage />} />
+          <Route exact path="/dev/logs" element={<LogPage />} />
           <Route
             exact
             path="/applicant/:jobPostID"
